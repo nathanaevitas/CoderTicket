@@ -11,7 +11,8 @@ class Event < ActiveRecord::Base
   end
 
   def self.search(str)
-  	Event.where('name LIKE ?',str+'%').concat(Event.where('extended_html_description LIKE ?',str+'%'))
+  	param = str+'%'
+  	Event.where('name LIKE ? or extended_html_description LIKE ?',param,param)
   end
 
 end
