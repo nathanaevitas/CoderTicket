@@ -10,4 +10,8 @@ class Event < ActiveRecord::Base
   	Event.where('starts_at >= ?',Time.new)  	
   end
 
+  def self.search(str)
+  	Event.where('name LIKE ?',str+'%').concat(Event.where('extended_html_description LIKE ?',str+'%'))
+  end
+
 end
