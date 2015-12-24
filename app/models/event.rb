@@ -15,4 +15,12 @@ class Event < ActiveRecord::Base
   	Event.where('name LIKE ? or extended_html_description LIKE ?',param,param)
   end
 
+  def self.event_list
+      Event.all
+  end 
+
+  def has_tickets?
+    !self.ticket_types.empty?       
+  end
+
 end

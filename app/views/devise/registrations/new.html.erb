@@ -1,0 +1,33 @@
+<div class="container-fluid events-list">
+  <h2>Sign up</h2>
+
+  <%= simple_form_for @event do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :name, required: true, autofocus: true %>
+      <%= f.input :extended_html_description, required: true, autofocus: true %>
+      <%= f.input :hero_image_url, label: "Event Avatar" , autofocus: true %>
+      
+      
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Create Event" %>
+    </div>
+  <% end %>
+
+  
+</div>
+
+
+
+<!-- t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.integer  "venue_id"
+    t.string   "hero_image_url"
+    t.text     "extended_html_description"
+    t.integer  "category_id"
+    t.string   "name"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false -->

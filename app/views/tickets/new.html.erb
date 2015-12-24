@@ -1,47 +1,70 @@
-<div class="container-fluid tickets-buy">
-  <div class="row tickets-header">
-    <div class="col-xs-12 col-md-11 col-md-offset-1">
-      <h3> <%= @event.name %> </h3>
-      <div class="pull-left">
-        <%= fa_icon 'map-marker' %>
-      </div>
-      <div class="venue-details">
-       <%= @event.venue.name %>
-       <br/>
-       <%= @event.venue.full_address %>
-      </div>
+<% if @event %>
+  <div class="container-fluid tickets-buy">
+    <div class="row tickets-header">
+      <div class="col-xs-12 col-md-11 col-md-offset-1">
+        <h3> <%= @event.name %> </h3>
+        <div class="pull-left">
+          <%= fa_icon 'map-marker' %>
+        </div>
+        <div class="venue-details">
+         <%= @event.venue.name %>
+         <br/>
+         <%= @event.venue.full_address %>
+        </div>
 
-      <div class="pull-left">
-        <%= fa_icon 'clock-o' %>
-      </div>
-      <div class="time-details"> 
-        <%= @event.starts_at.strftime('%A, %d %b %Y %l:%M %p') %> 
-      </div>
+        <div class="pull-left">
+          <%= fa_icon 'clock-o' %>
+        </div>
+        <div class="time-details"> 
+          <%= @event.starts_at.strftime('%A, %d %b %Y %l:%M %p') %> 
+        </div>
 
 
+      </div>
     </div>
+    <div class="row">
+      <div class="col-md-11 col-md-offset-1">  
+        <table class="table">
+          <th> Ticket Type </th>
+          <th> Unit Price </th>
+          <th> Quantity </th>
+        
+          <% @event.ticket_types.each do |type| %>
+          <tr>
+            <td> <%= type.name %> </td>
+            <td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %> </td>
+            <td> <%= select_tag('quantity', options_for_select(0..10)) %></td> 
+          </tr>
+          <% end %> 
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-5">
+        <button class="btn btn-success btn-lg btn-block"> Buy </button>
+      </div>
+    <div>
   </div>
-  <div class="row">
-    <div class="col-md-11 col-md-offset-1">  
-      <table class="table">
-        <th> Ticket Type </th>
-        <th> Unit Price </th>
-        <th> Quantity </th>
-      
-        <% @event.ticket_types.each do |type| %>
-        <tr>
-          <td> <%= type.name %> </td>
-          <td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %> </td>
-          <td> <%= select_tag('quantity', options_for_select(0..10)) %></td> 
-        </tr>
+<% else %>
+    <div class="container-fluid tickets-buy">
+    <h2>Create New TicketType</h2>
+
+    <%= simple_form_for @tickets, :url => tickets_path, :method => :post do |t| %>
+      <%= t.error_notification %>
+
+      <div class="form-inputs">
+       <%= t.input :name, label: 'Ticket Name', required: true %>
+       <%= t.input :price,as: :integer, label: 'Ticket Price', required: true %>
+       <%= t.input :max_quantity,as: :integer, label: 'Max Quantity', required: true %>        
+        <%= t.input :event do %>      
+          <%= t.select :event, Event.event_list.collect {|f| [f.name, f.id] }, label: "For Event", include_blank: true%>
         <% end %> 
-      </table>
-    </div>
+
+      <div class="form-actions">
+        <%= t.button :submit, "Create Ticket Type" %>
+      </div>
+    <% end %>
   </div>
-  <div class="row">
-    <div class="col-md-2 col-md-offset-5">
-      <button class="btn btn-success btn-lg btn-block"> Buy </button>
-    </div>
-  <div>
-</div>  
+<% end %>
+    
 

@@ -1,0 +1,34 @@
+<div class='events-header' style='background-image: url(<%= header_background_image_url %>)'>
+  <div class="container">
+    <h2> Create New Event </h2>    
+  </div>
+</div>
+<div class="container">
+<div class = 'row'>
+    <div class = 'col-md-6'>
+      <%= simple_form_for(@event) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :name, required: true, autofocus: true %>
+          <%= f.input :extended_html_description, label: 'Event Description' , autofocus: true %>
+          <%= f.input :hero_image_url, label: 'Event Avatar Url' , autofocus: true %>
+          <%= f.input :category do %>      
+            <%= f.select :category, Category.category_list.collect {|f| [f.name, f.id] }, label: "Category", include_blank: true%>
+          <% end %>
+          <%= f.input :starts_at, label: 'Start Date' , autofocus: true %>
+          <%= f.input :ends_at, label: 'End Date' , autofocus: true %>
+          <%= f.input :venue do %>      
+            <%= f.select :venue, Venue.venue_list.collect {|f| [f.name, f.id] }, label: "Venue", include_blank: true%>
+          <% end %> 
+
+        <div class="form-actions">
+          <%= f.button :submit, "Create Event" %>
+        </div>
+      <% end %>
+      </div>  
+    </div>
+  </div>
+</div>	
+  
+
+

@@ -12,14 +12,15 @@ RSpec.describe Event, type: :model do
     expect(event.errors[:starts_at]).to include("can't be blank")    
   end
 
-  # it 'does not allow duplicated event name' do
-  #   v = Venue.new
-  #   t = Time.new
-  #   n = 'abc'
-  #   a = Event.create( name: n, venue: v, starts_at: t)
-  #   b = Event.create( name: n, venue: v, starts_at: t)
-  #   expect(b.errors[:name]).to include("been taken")
-  # end 
+  it 'does not allow duplicated event name' do
+    v = Venue.new
+    t = Time.new
+    n = 'bcdefghjjljkl'
+    a = create(:event, name: n, venue: v, starts_at: t)
+    b = build(:event, name: n, venue: v, starts_at: t)
+    b.save
+    expect(b.errors[:name].to_s).to include("been taken")
+  end 
 
   it 'lists only current events' do    
     a = create(:event, starts_at: Faker::Time.backward(14, :evening) )
