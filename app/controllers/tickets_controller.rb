@@ -11,7 +11,7 @@ class TicketsController < ApplicationController
   	@ticket = TicketType.new(ticket_params)
   	@ticket.event = event
   	if @ticket.save
-  		redirect_to root_path  	
+  		redirect_to root_path, flash: {success: "Successfully created a new ticket type"}    	
   	end
   end
 

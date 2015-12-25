@@ -8,9 +8,7 @@ class OrderItemsController < ApplicationController
                                 quantity: params[:order_item][:max_quantity],
                                 order_id:params[:order_item][:event_id])
   	if @order_item.save
-  		redirect_to new_event_ticket_path(params[:order_item][:order_id]), :notice => 'item added to order'
-  	else
-  		raise abc	
+  		redirect_to new_event_ticket_path(params[:order_item][:order_id]),flash: {success: "Successfully added the item to your Order"}	
   	end
   end
 

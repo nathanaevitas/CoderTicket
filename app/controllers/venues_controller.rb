@@ -8,7 +8,7 @@ class VenuesController < ApplicationController
     @venue = Venue.new(venue_params) 
     @venue.region = region   
     if @venue.save
-      redirect_to root_path   
+      redirect_to root_path,flash: {success: "Successfully created a new Venue"}   
     end
   end
 

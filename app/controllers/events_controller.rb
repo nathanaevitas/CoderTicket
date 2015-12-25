@@ -28,7 +28,7 @@ class EventsController < ApplicationController
     @event.venue = venue    
     
     if @event.save
-      redirect_to events_path 
+      redirect_to events_path, flash: {success: "Successfully created a new Event"}
     else
       render 'new'   
     end    

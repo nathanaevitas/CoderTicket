@@ -4,12 +4,17 @@
       <h2> Discover upcoming events </h2>
       <form>
         <input type="text" class="form-control" name="search" placeholder="Search for events, shows, courses...">
-      </form>
+      </form>       
     <% else %>
       <h2> Unpublished Events </h2>
     <% end %>
   </div>
 </div>
+<div class="row">
+  <div class="container">
+    <%= render partial: "partials/flash", flash: flash %>
+  </div>
+</div>  
 <div class="container-fluid events-list">
     <% @events.in_groups_of(4) do |g| %>
       <div class="row">

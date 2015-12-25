@@ -1,4 +1,9 @@
 <div class="container-fluid events-list">
+  <div class="row">
+    <div class="container">
+      <%= render partial: "partials/flash", flash: flash %>
+    </div>
+  </div>  
   <h2>Log in</h2>
   <%= devise_error_messages! %>
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {role: "form"}) do |f| %>
