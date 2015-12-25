@@ -4,6 +4,7 @@ class OrderItemsController < ApplicationController
   end
 
   def create
+    raise 'abc'
   	@order_item = OrderItem.new(name:params[:order_item][:name],
                                   price: params[:order_item][:price],
                                 quantity: params[:order_item][:quantity],
@@ -12,7 +13,7 @@ class OrderItemsController < ApplicationController
   		  redirect_to new_event_ticket_path(params[:order_item][:order_id]),
         flash: {success:"Thanks! You have successfully added <strong>#{@order_item.quantity}</strong> of <strong>#{@order_item.name}</strong> to your Order"}
     else 
-        # raise 'abc'              
+                      
         redirect_to new_event_ticket_path(params[:order_item][:order_id]),
         flash: {error: "You must select a quantity value"}
   	end

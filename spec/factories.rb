@@ -2,12 +2,12 @@
 require 'faker'
 
 
-FactoryGirl.define do 
+FactoryGirl.define do  
 
   factory :order_item do
-    price 1
-    quantity 1
-    
+    price {Faker::Number.number(5)}
+    quantity {Faker::Number.number(2)}
+        
   end  
 
   factory :order do
