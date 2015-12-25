@@ -7,14 +7,14 @@ class OrderItemsController < ApplicationController
   	@order_item = OrderItem.new(name:params[:order_item][:name],
                                   price: params[:order_item][:price],
                                 quantity: params[:order_item][:quantity],
-                                order_id:params[:order_item][:event_id])
-  	if @order_item.save
-        # raise 'abc'
+                                order_id:params[:order_item][:order_id])
+  	if @order_item.save       
   		  redirect_to new_event_ticket_path(params[:order_item][:order_id]),
         flash: {success:"Thanks! You have successfully added <strong>#{@order_item.quantity}</strong> of <strong>#{@order_item.name}</strong> to your Order"}
-    else               
+    else 
+        # raise 'abc'              
         redirect_to new_event_ticket_path(params[:order_item][:order_id]),
-        flash: {error: "You must have select a quantity value"}
+        flash: {error: "You must select a quantity value"}
   	end
   end
 

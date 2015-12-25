@@ -55,10 +55,10 @@
      
     </div>
     <div class="row">
-      <div class="col-md-2 col-md-offset-5">
+      <div class="col-md-4 col-md-offset-4">
         <%= simple_form_for Order.new, url: orders_path, method: :post do |f| %>
-          <%= f.input :id,as: 'hidden', input_html: {value: params[:event_id]} %>
-          <%= f.button :submit, 'Buy',class: "btn btn-success btn-lg btn-block" %>
+          <%= f.input :id, as: 'hidden', input_html: {value: params[:event_id]} %>
+          <%= f.button :submit, 'Complete Your Orders',class: "btn btn-success btn-lg btn-block" %>
         <% end %>
       </div>   
   </div>

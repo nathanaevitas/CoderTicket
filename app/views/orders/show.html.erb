@@ -1,0 +1,51 @@
+<% if @order %>
+  <div class="container-fluid tickets-buy">
+    <div class="row tickets-header">
+      <div class="col-xs-12 col-md-11 col-md-offset-1">
+        <h3>Your Orders for <strong> <%= @event.name %> </strong> </h3>
+        <div class="pull-left">
+          <%= fa_icon 'map-marker' %>
+        </div>
+        <div class="venue-details">
+         <%= @event.venue.name %>
+         <br/>
+         <%= @event.venue.full_address %>
+        </div>
+
+        <div class="pull-left">
+          <%= fa_icon 'clock-o' %>
+        </div>
+        <div class="time-details"> 
+          <%= @event.starts_at.strftime('%A, %d %b %Y %l:%M %p') %> 
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="container">
+        <%= render partial: "partials/flash", flash: flash %>
+      </div>
+    </div>  
+    <div class="row">
+      <div class="col-md-11 col-md-offset-1">  
+        <table class="table">
+          <th> Ticket Type </th>
+          <th> Unit Price </th>         
+          <th> Quantity </th> 
+          <th> Subtotal </th>                  
+          <% @order.order_items.each do |item| %>
+          <% if item.quantity > 0 %> 
+          	<tr>
+	            <td> <%= item.name %> </td>
+	            <td><%= number_to_currency(item.price, unit: 'VND ', precision: 0) %> </td>
+	            <td> <%= item.quantity %></td> 
+	            <td> <%= item.subtotal %></td>                        
+          	</tr>
+          <% end %> 
+          <% end %> 
+          <tr><td colspan="3">Your Total Cost: </td><td><strong><%= number_to_currency(@order.total_cost, unit: 'VND ', precision: 0) %> </strong></td></tr>
+        </table>
+      </div>
+     
+    </div>
+    
+  <% end %>
