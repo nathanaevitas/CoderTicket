@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151224133630) do
+ActiveRecord::Schema.define(version: 20151225064949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 20151224133630) do
   add_index "events", ["category_id"], name: "index_events_on_category_id", using: :btree
   add_index "events", ["venue_id"], name: "index_events_on_venue_id", using: :btree
 
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "quantity"
+    t.integer  "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.float    "subtotal"
     t.float    "total"
@@ -58,7 +66,6 @@ ActiveRecord::Schema.define(version: 20151224133630) do
     t.integer  "max_quantity"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.string   "type"
     t.integer  "order_id"
   end
 

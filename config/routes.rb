@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
+  
+
+  
+
   devise_for :users
   root 'events#index'
   resources :tickets
+  resources :venues, only: [:create, :new]
+  resources :order_items, only: [:create]
+  resources :orders
   resources :events do
     resources :tickets
   end

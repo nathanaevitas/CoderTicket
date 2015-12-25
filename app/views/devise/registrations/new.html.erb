@@ -1,33 +1,17 @@
 <div class="container-fluid events-list">
-  <h2>Sign up</h2>
-
-  <%= simple_form_for @event do |f| %>
-    <%= f.error_notification %>
-
-    <div class="form-inputs">
-      <%= f.input :name, required: true, autofocus: true %>
-      <%= f.input :extended_html_description, required: true, autofocus: true %>
-      <%= f.input :hero_image_url, label: "Event Avatar" , autofocus: true %>
-      
-      
+   <h2>Sign Up</h2>
+  <%= devise_error_messages! %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {role: "form"}) do |f| %>
+    <div class="form-group">
+    <%= f.input :name, required: false, autofocus: true %>
+    <%= f.input :email, required: false, autofocus: true %>
+    <%= f.input :password, required: true %>
+    <%= f.input :password_confirmation, required: true %>
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Create Event" %>
+    <%= f.button :submit, "Sign Up" %>
     </div>
   <% end %>
-
-  
 </div>
 
-
-
-<!-- t.datetime "starts_at"
-    t.datetime "ends_at"
-    t.integer  "venue_id"
-    t.string   "hero_image_url"
-    t.text     "extended_html_description"
-    t.integer  "category_id"
-    t.string   "name"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false -->

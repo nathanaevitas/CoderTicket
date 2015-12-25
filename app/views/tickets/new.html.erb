@@ -22,49 +22,76 @@
 
       </div>
     </div>
+    
     <div class="row">
       <div class="col-md-11 col-md-offset-1">  
         <table class="table">
           <th> Ticket Type </th>
-          <th> Unit Price </th>
-          <th> Quantity </th>
-        
+          <th> Unit Price </th>         
+          <th> Quantity </th> 
+          <th> Add to Orders </th>                  
           <% @event.ticket_types.each do |type| %>
           <tr>
             <td> <%= type.name %> </td>
-            <td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %> </td>
-            <td> <%= select_tag('quantity', options_for_select(0..10)) %></td> 
+            <td> 
+              <%= simple_form_for OrderItem.new, url: order_items_path, method: :post do |f| %>
+              <%=f.input :order_id, as: 'hidden',  input_html: { value: type.event_id} %>
+              <%=f.input :price, as: 'hidden', input_html: { value: type.price} %>
+              <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %> </td>
+            <td>  
+              <%= f.input :quantity,collection: 0..10,label: false %>    
+            </td> 
+            <td>  
+              <%= f.button :submit, 'Add', class: "btn btn-success btn-lg btn-block" %>    
+            </td>  
+             <% end %>           
           </tr>
           <% end %> 
         </table>
       </div>
+     
     </div>
     <div class="row">
       <div class="col-md-2 col-md-offset-5">
-        <button class="btn btn-success btn-lg btn-block"> Buy </button>
-      </div>
-    <div>
+        <%= simple_form_for Order.new, url: orders_path, method: :post do |f| %>
+          <%= f.input :id,as: 'hidden', input_html: {value: params[:event_id]} %>
+          <%= f.button :submit, 'Buy',class: "btn btn-success btn-lg btn-block" %>
+        <% end %>
+      </div>   
   </div>
+  
 <% else %>
-    <div class="container-fluid tickets-buy">
-    <h2>Create New TicketType</h2>
+    <div class='events-header' style='background-image: url(<%= header_background_image_url %>)'>
+      <div class="container">
+        <h2> Create New Ticket </h2>    
+      </div>
+    </div>
+    <div class = 'row'>
+      <div class ='col-md-10'>
+        <div class="container-fluid tickets-buy">   
 
-    <%= simple_form_for @tickets, :url => tickets_path, :method => :post do |t| %>
-      <%= t.error_notification %>
+          <%= simple_form_for @tickets, :url => tickets_path, :method => :post do |t| %>
+          <%= t.error_notification %>
 
-      <div class="form-inputs">
-       <%= t.input :name, label: 'Ticket Name', required: true %>
-       <%= t.input :price,as: :integer, label: 'Ticket Price', required: true %>
-       <%= t.input :max_quantity,as: :integer, label: 'Max Quantity', required: true %>        
-        <%= t.input :event do %>      
-          <%= t.select :event, Event.event_list.collect {|f| [f.name, f.id] }, label: "For Event", include_blank: true%>
-        <% end %> 
-
-      <div class="form-actions">
-        <%= t.button :submit, "Create Ticket Type" %>
+          <div class="form-inputs">
+           <%= t.input :name, label: 'Ticket Name', required: true %>
+           <%= t.input :price,as: :integer, label: 'Ticket Price', required: true %>
+           <%= t.input :max_quantity,as: :integer, label: 'Max Quantity', required: true %>        
+            <%= t.input :event do %>      
+              <%= t.select :event, Event.event_list.collect {|f| [f.name, f.id] }, label: "For Event", include_blank: true%>
+            <% end %> 
+        
+          <div <div class="row">
+            <div class="col-md-4 col-md-offset-3">
+              <%= t.button :submit, "Create Ticket Type", class: "btn btn-success btn-lg btn-block"  %>
+              </div>
+          </div>
+        <% end %>
       </div>
     <% end %>
-  </div>
-<% end %>
-    
+    </div>
+      </div>
+    </div>
+
+      
 

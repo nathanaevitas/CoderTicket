@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-	before_action :authenticate_user!, only: [:new]
+	before_action :authenticate_user!, only: [:new]	
 
   def new
   	@tickets = TicketType.new
@@ -19,4 +19,5 @@ class TicketsController < ApplicationController
   def ticket_params
     params.require(:ticket_type).permit(:name,:price,:max_quantity)
   end
+  
 end

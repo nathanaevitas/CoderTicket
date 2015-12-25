@@ -1,5 +1,7 @@
-class OrderItem < TicketType
-  belongs_to :order
-  belongs_to :ticket_type  
+class OrderItem < ActiveRecord::Base
+	belongs_to :order
 
+	def subtotal
+		self.price * self.quantity
+	end
 end

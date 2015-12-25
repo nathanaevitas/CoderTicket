@@ -15,11 +15,14 @@
         <li class="nav-item"> <%= link_to "Create Events", new_event_path, class: "nav-link" %></li>
         <li class="nav-item"> <%= link_to "Create Tickets", new_ticket_path, class: "nav-link" %></li>
         <li class="nav-item"> </li>
-        <li class="nav-item"> <%= link_to "Unpublished Events",root_path(noticket: 'yes'), class: "nav-link" %></li>       
+        <li class="nav-item"> <%= link_to "Create Venues", new_venue_path, class: "nav-link" %></li>
+        <li class="nav-item"> </li>
+        <li class="nav-item"> <%= link_to "Unpublished Events",root_path(noticket: 'yes'),class: "nav-link" %></li>
+        <li class="nav-item"> <%= link_to "Log Out",destroy_user_session_path,method: :delete,class: "nav-link" %></li>
 
       <% else %>
         <li class="nav-item">
-        <%= link_to "Sign Up", user_session_path, class: "nav-link" %>
+        <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "Log In", new_user_session_path, class: "nav-link" %>
