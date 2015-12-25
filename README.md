@@ -43,6 +43,13 @@ The following **required** functionality is complete:
 * [ ] User can see a list of events he or she has created.
 * [ ] Users can edit their event after creation. But only the user who created the event can edit the event. 
 
+## Video Walkthrough 
+
+Here's a walkthrough of implemented user stories:
+
+![Video Walkthrough](http://aevitasgroup.com/coderticketdemo.gif)
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app.
