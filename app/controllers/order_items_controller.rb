@@ -4,7 +4,7 @@ class OrderItemsController < ApplicationController
   end
 
   def create
-    raise 'abc'
+    # raise 'abc'
   	@order_item = OrderItem.new(name:params[:order_item][:name],
                                   price: params[:order_item][:price],
                                 quantity: params[:order_item][:quantity],
