@@ -1,5 +1,6 @@
 class OrderItem < ActiveRecord::Base
 	belongs_to :order
+	validates_presence_of :price, :quantity
 
 	def subtotal
 		if self.price.nil? || self.quantity.nil?

@@ -39,6 +39,7 @@
               <%= simple_form_for OrderItem.new, url: order_items_path, method: :post do |f| %>
               <%=f.input :order_id, as: 'hidden',  input_html: { value: type.event_id} %>
               <%=f.input :price, as: 'hidden', input_html: { value: type.price} %>
+              <%=f.input :name, as: 'hidden', input_html: { value: type.name} %>
               <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %> </td>
             <td>  
               <%= f.input :quantity,collection: 0..10,label: false %>    
@@ -69,7 +70,8 @@
       </div>
     </div>
     <div class = 'row'>
-      <div class ='col-md-10'>
+      <div class='container'>
+        <div class ='col-md-10'>
         <div class="container-fluid tickets-buy">   
 
           <%= simple_form_for @tickets, :url => tickets_path, :method => :post do |t| %>
@@ -92,6 +94,7 @@
       </div>
     <% end %>
     </div>
+      </div>
       </div>
     </div>
 
