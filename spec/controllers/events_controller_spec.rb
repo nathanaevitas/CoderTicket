@@ -13,11 +13,5 @@ RSpec.describe EventsController, type: :controller do
 		get :index, {search: 'a'}
 		expect(assigns(:events)).to match_array([a,b])
 	end
-end
-
-RSpec.describe 'PublishedEvents', type: :controller do
-	it 'only displays' do
-		
-	end
 	
 end

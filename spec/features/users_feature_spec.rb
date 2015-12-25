@@ -8,7 +8,7 @@ RSpec.describe "Users Authentication", type: :feature do
 		fill_in('Email', with: a.email)
 		fill_in('Password', with: a.password,:match => :prefer_exact)
 		fill_in('Password confirmation', with: a.password,:match => :prefer_exact)
-		click_button('Sign up')
+		click_button('Sign Up')
 		expect(page).to have_content('Discover upcoming events')
 	end
 	it 'allows users to login with email and password' do
