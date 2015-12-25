@@ -4,7 +4,7 @@
 
 Submitted by: **Nathan Tran*
 
-Time spent: **50** hours
+Time spent: **40** hours
 
 URL: **https://coderticket1.herokuapp.com/**
 
