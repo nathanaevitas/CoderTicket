@@ -41,7 +41,6 @@ GEM
       execjs
       json
     bcrypt (3.1.10)
-    bcrypt (3.1.10-x86-mingw32)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -89,7 +88,6 @@ GEM
     faker (1.6.1)
       i18n (~> 0.5)
     ffi (1.9.10)
-    ffi (1.9.10-x86-mingw32)
     font-awesome-rails (4.5.0.0)
       railties (>= 3.2, < 5.0)
     font-kit-rails (1.2.0)
@@ -136,14 +134,11 @@ GEM
     nenv (0.2.0)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
-    nokogiri (1.6.7.1-x86-mingw32)
-      mini_portile2 (~> 2.0.0.rc2)
     notiffany (0.0.8)
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
     pg (0.18.4)
-    pg (0.18.4-x86-mingw32)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -266,7 +261,6 @@ GEM
 
 PLATFORMS
   ruby
-  x86-mingw32
 
 DEPENDENCIES
   better_errors
