@@ -2,6 +2,10 @@ class OrderItem < ActiveRecord::Base
 	belongs_to :order
 
 	def subtotal
-		self.price * self.quantity
+		if self.price.nil? || self.quantity.nil?
+			return 1
+		else		  		
+			self.price*self.quantity
+		end 
 	end
 end

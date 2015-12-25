@@ -30,6 +30,20 @@ RSpec.describe Event, type: :model do
     expect(Event.current_events).to match_array [c,d]
   end
 
+  it 'lists only published events' do 
+    t1 = build(:ticket_type)
+    t2 = build(:ticket_type)
+    a = create(:event)
+    b = create(:event)
+    t1.event = a    
+    t2.event = b
+    t1.save
+    t2.save
+    c = create(:event)
+    d = create(:event)
+    expect(Event.all.map {|e| e.has_tickets? ? e : nil }).to match_array [a,b,nil,nil]
+  end
+
   it 'returns a list of search results for a text query based on event name and description' do
     a = create(:event, name: 'abc')
     b = create(:event, extended_html_description: 'abc')

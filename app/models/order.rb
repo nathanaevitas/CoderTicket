@@ -1,8 +1,9 @@
 class Order < ActiveRecord::Base
   has_many :order_items 
 
-  def subtotal(subtotal)
-   	self[:subtotal] += subtotal
-   end 
-
-end
+	def subtotal
+		sum = 0		
+		self.order_items.each {|item| sum += item.subtotal}
+		return sum
+	end
+end 

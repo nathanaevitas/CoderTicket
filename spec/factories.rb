@@ -2,15 +2,18 @@
 require 'faker'
 
 
-FactoryGirl.define do  factory :order_item do
+FactoryGirl.define do 
+
+  factory :order_item do
     price 1
-quantity 1
-  end
-  
+    quantity 1
+    
+  end  
 
   factory :order do
     
   end
+
   factory :user do |f|
     f.name {Faker::Name.name}
     f.email {Faker::Internet.email}
